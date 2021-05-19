@@ -1,0 +1,25 @@
+.my-form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.9 !important;
+    height: 32px !important;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.my-form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #183980;
+    outline: 0;
+}
+
+.input-w-icon i {
+    position: absolute;
+}
