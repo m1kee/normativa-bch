@@ -32,7 +32,7 @@
     align-items: center;
     padding: 8px;
     position: static;
-    width: 1035px;
+    width: 100%;
     height: 40px;
     left: 0px;
     top: 493px;
@@ -57,7 +57,7 @@
     align-items: flex-start;
     padding: 0px;
     position: static;
-    width: 1019px;
+    width: 100%;
     height: 24px;
     left: 8px;
     top: 8px;
@@ -76,7 +76,7 @@
     align-items: flex-start;
     padding: 0px;
     position: static;
-    width: 548px;
+    width: 50%;
     height: 24px;
     left: 235.5px;
     top: 0px;
@@ -104,4 +104,8 @@
     flex-grow: 0;
     margin: 0px 12px;
     cursor: pointer;
+}
+
+.paginator-page-number.active {
+    background-color: #DCE6FF;
 }
