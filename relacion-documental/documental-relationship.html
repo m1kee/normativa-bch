@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relaci&oacute;n Documental</title>
+    <link rel="stylesheet" href="documental-relationship.css">
+</head>
+
+<body>
+    <div ng-app="DocumentalRelationship" class="app">
+        <div ng-controller="DocumentalRelationshipController as ctx">
+            <div class="container card">
+                <h3 ng-if="ctx.relationType && ctx.relationCode && (ctx.politics || ctx.norms || ctx.procedures || ctx.asociated)">
+                    Relaciones con {{ctx.relationType}}: <span class="clickable related-document-title" ng-click="ctx.downloadFile(ctx.searchedDocument.Id, ctx.getRelationCode())">{{ctx.searchedDocument.Title}}</span>
+                </h3>
+
+                <h2 ng-if="!ctx.relationType || !ctx.relationCode">
+                    No se han indicado los par&aacute;metros necesarios para realizar la búsqueda de relaci&oacute;n documental.
+                </h2>
+
+                <h2 ng-if="ctx.relationType && ctx.relationCode && !ctx.politics && !ctx.norms && !ctx.procedures && !ctx.asociated">
+                    No se han encontrado relaciones con {{ctx.relationType}}: {{ctx.relationCode}} o no existe dentro de los registros.
+                </h2>
+
+                <div ng-if="(ctx.relationType === ctx.relationTypes.policy && ctx.asociated && ctx.asociated.length > 0) || (ctx.relationType !== ctx.relationTypes.policy && ctx.politics && ctx.politics.length > 0)">
+                    <h3 style="margin-top: 0px;">Políticas {{(ctx.relationType === ctx.relationTypes.policy) ? 'asociadas' : ''}}</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="policy in (ctx.relationType === ctx.relationTypes.policy ? ctx.asociated : ctx.politics)">
+                                <td ng-click="ctx.downloadFile(policy.Id, ctx.relationCodes.policy)">{{policy.Title}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--<div id="politics-paginator" class="paginator">
+                        <div class="paginator-content">
+                            <i class="fas fa-chevron-left paginator-icon" title="Atr&aacute;s"></i>
+        
+                            <div class="paginator-number-section">
+                                <span class="paginator-page-number active"> 1 </span>
+                                <span class="paginator-page-number"> 2 </span>
+                                <span class="paginator-page-number"> 3 </span>
+                                <span class="paginator-page-number">...</span>
+                                <span class="paginator-page-number"> 10 </span>
+                            </div>
+        
+                            <i class="fas fa-chevron-right paginator-icon" title="Siguiente"></i>
+                        </div>
+                    </div>-->
+                </div>
+
+
+                <div ng-if="(ctx.relationType === ctx.relationTypes.norm && ctx.asociated && ctx.asociated.length > 0) || (ctx.relationType !== ctx.relationTypes.norm && ctx.norms && ctx.norms.length > 0)">
+                    <h3>Normas {{(ctx.relationType === ctx.relationTypes.norm) ? 'asociadas' : ''}}</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="norm in (ctx.relationType === ctx.relationTypes.norm ? ctx.asociated : ctx.norms)">
+                                <td ng-click="ctx.downloadFile(norm.Id, ctx.relationCodes.norm)">{{norm.Title}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--<div id="rules-paginator" class="paginator">
+                        <div class="paginator-content">
+                            <i class="fas fa-chevron-left paginator-icon" title="Atr&aacute;s"></i>
+        
+                            <div class="paginator-number-section">
+                                <span class="paginator-page-number active"> 1 </span>
+                                <span class="paginator-page-number"> 2 </span>
+                                <span class="paginator-page-number"> 3 </span>
+                                <span class="paginator-page-number">...</span>
+                                <span class="paginator-page-number"> 10 </span>
+                            </div>
+        
+                            <i class="fas fa-chevron-right paginator-icon" title="Siguiente"></i>
+                        </div>
+                    </div>-->
+                </div>
+
+
+                <div ng-if="(ctx.relationType === ctx.relationTypes.procedure && ctx.asociated && ctx.asociated.length > 0) || (ctx.relationType !== ctx.relationTypes.procedure && ctx.procedures && ctx.procedures.length > 0)">
+                    <h3>Procedimientos {{(ctx.relationType === ctx.relationTypes.procedure) ? 'asociados' : ''}}</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="procedure in (ctx.relationType === ctx.relationTypes.procedure ? ctx.asociated : ctx.procedures)">
+                                <td ng-click="ctx.downloadFile(procedure.Id, ctx.relationCodes.procedure)">{{procedure.Title}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--<div id="procedures-paginator" class="paginator">
+                        <div class="paginator-content">
+                            <i class="fas fa-chevron-left paginator-icon" title="Atr&aacute;s"></i>
+        
+                            <div class="paginator-number-section">
+                                <span class="paginator-page-number active"> 1 </span>
+                                <span class="paginator-page-number"> 2 </span>
+                                <span class="paginator-page-number"> 3 </span>
+                                <span class="paginator-page-number">...</span>
+                                <span class="paginator-page-number"> 10 </span>
+                            </div>
+        
+                            <i class="fas fa-chevron-right paginator-icon" title="Siguiente"></i>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="angular-js.min.js"></script>
+    <script src="documental-relationship.js"></script>
+</body>
+
+</html>
